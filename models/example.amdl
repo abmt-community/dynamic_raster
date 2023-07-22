@@ -1,0 +1,112 @@
+{
+  "model_is_node": false,
+  "nodes": [
+    {
+      "name": "dyn_raster",
+      "type": "class",
+      "cfg": {
+        "class": "dyn_raster",
+        "prj": "dynamic_raster",
+        "dyn_raster_num": "1"
+      },
+      "pos": {
+        "x": -870,
+        "y": -328
+      },
+      "rotate": false,
+      "comment_out": false
+    },
+    {
+      "name": "set_dyn_interval",
+      "type": "class",
+      "cfg": {
+        "class": "set_dyn_interval",
+        "prj": "dynamic_raster",
+        "raster_name": "a_source",
+        "dyn_raster_num": "1"
+      },
+      "pos": {
+        "x": -461,
+        "y": 14
+      },
+      "rotate": false,
+      "comment_out": false,
+      "inputs": {
+        "interval_ms": {
+          "node": "interval",
+          "pin": "value"
+        }
+      },
+      "default_values": {
+        "interval_ms": "10"
+      }
+    },
+    {
+      "name": "toggle",
+      "type": "expression",
+      "cfg": {
+        "function": "!a",
+        "output_name": "out",
+        "output_type": "auto",
+        "type_header": "",
+        "disable_output": false
+      },
+      "pos": {
+        "x": -406,
+        "y": -364
+      },
+      "rotate": false,
+      "comment_out": false,
+      "inputs": {
+        "a": {
+          "node": "delay",
+          "pin": "out"
+        }
+      },
+      "default_values": {
+        "a": ""
+      }
+    },
+    {
+      "name": "delay",
+      "type": "base",
+      "cfg": {
+        "node": "delay",
+        "data_type": "double",
+        "start_value": "0"
+      },
+      "pos": {
+        "x": -398,
+        "y": -225
+      },
+      "rotate": true,
+      "comment_out": false,
+      "inputs": {
+        "in": {
+          "node": "toggle",
+          "pin": "out"
+        }
+      },
+      "raster": "a_dyn_raster",
+      "default_values": {
+        "in": ""
+      }
+    },
+    {
+      "name": "interval",
+      "type": "base",
+      "cfg": {
+        "node": "parameter",
+        "data_type": "double",
+        "default": "10",
+        "type_header": ""
+      },
+      "pos": {
+        "x": -848,
+        "y": 0
+      },
+      "rotate": false,
+      "comment_out": false
+    }
+  ]
+}
